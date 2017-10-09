@@ -96,8 +96,12 @@ button, .btn {
 	padding: 18px 34px;
 }
 
-button:hover {
+button:hover, button:disabled {
 	background: rgba(190, 139, 138, .5);
+}
+
+button:disabled {
+	cursor: not-allowed;
 }
 
 .btn {
