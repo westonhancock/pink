@@ -1,0 +1,7 @@
+[
+  {
+	"path": "/notes/*",
+	"data": true,
+	"method": ["GET", "POST", "PUT"]
+  }
+]
