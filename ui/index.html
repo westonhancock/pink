@@ -4,18 +4,19 @@
 	<meta charset="UTF-8">
 	<title>Love For Galya</title>
 	<meta content="minimum-scale=1.0, width=device-width" name="viewport">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,500,600,700,800">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,500,600,700,800" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Spectral:200,300,400,500,600,700,800" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="main.css">
-	<link rel="icon" type="img/ico" href="favicon.ico">
+	<link href="main.css" rel="stylesheet">
+	<link href="favicon.ico" rel="icon" type="img/ico">
 </head>
 <body>
 	<div id="wrapper">
 		<div id="banner">
-			<div class="max-full">
-				<i class="fa fa-heart" aria-hidden="true"></i>
-				<div>
+			<div class="banner-content max-full">
+				<i aria-hidden="true" class="fa fa-heart"></i>
+
+				<div class="banner-buttons">
 					<a class="btn btn-secondary" href="http://fightnpc.com" target="_blank">Learn about NPC</a>
 					<a class="btn" href="https://docs.google.com/document/d/1rTX14Kcna2QwBMQjRkZ3G6tGc109-b12EikzMvDA_i4/edit" target="_blank">Make a Donation</a>
 				</div>
@@ -26,12 +27,12 @@
 
 		<form>
 			<label for="message">Your Message for Brian and Caris</label>
-			<textarea name="message" type="textarea" autofocus rows="6" required></textarea>
+			<textarea autofocus name="message" required rows="6" type="textarea"></textarea>
 
 			<label for="name">Your Name</label>
-			<input name="name" type="text" required>
+			<input name="name" required type="text">
 
-			<button type="submit" disabled>Submit Your Message</button>
+			<button disabled type="submit">Submit Your Message</button>
 		</form>
 	</div>
 

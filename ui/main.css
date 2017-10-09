@@ -1,6 +1,6 @@
 html, body {
-	margin: 0;
 	height: 100%;
+	margin: 0;
 }
 
 body {
@@ -15,25 +15,26 @@ body {
 	background: #F0E7E6;
 	box-sizing: border-box;
 	left: 0;
-	padding: 16px .5em;
+	padding: 16px 0.5em;
 	width: 100%;
 }
 
-#banner > div {
+#banner .banner-content {
 	align-items: center;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	padding: 0 1em;
 }
 
-#banner > div > div {
+#banner .banner-buttons {
 	text-align: right;
 }
 
 .fa-heart {
 	color: #E7ADAB;
 	font-size: 1.5em;
-	opacity: .35;
+	opacity: 0.35;
 }
 
 form {
@@ -52,14 +53,14 @@ h1 {
 	font-weight: 900;
 	margin: 20px;
 	text-align: center;
-	text-shadow: 0 2px 14px rgba(239, 214, 212, .5);
+	text-shadow: 0 2px 14px rgba(239, 214, 212, 0.5);
 }
 
 label {
 	color: #BE8B8A;
+	display: block;
 	font-size: 18px;
 	font-weight: bold;
-	display: block;
 	margin: 0 0 5px;
 	text-align: left;
 }
@@ -67,23 +68,23 @@ label {
 input, textarea {
 	border-color: #EFE5E4;
 	border-radius: 5px;
-	box-shadow: none;
 	border-style: solid;
 	border-width: 2px;
+	box-shadow: none;
 	box-sizing: border-box;
 	display: inline-block;
 	font-size: 16px;
 	line-height: 1.5em;
-	outline: none;
-	padding: .5em 1em;
 	margin: 0 0 1em;
+	outline: none;
+	padding: 0.5em 1em;
 	width: 100%;
 }
 
 button, .btn {
 	background: #BE8B8A;
-	border: 0;
 	border-radius: 4px;
+	border-width: 0;
 	color: #FFF;
 	cursor: pointer;
 	display: inline-block;
@@ -91,13 +92,13 @@ button, .btn {
 	font-size: 17px;
 	font-weight: 400;
 	line-height: 1.5em;
-	outline: none;
 	margin: 15px 0 0;
+	outline: none;
 	padding: 18px 34px;
 }
 
 button:hover, button:disabled {
-	background: rgba(190, 139, 138, .5);
+	background: rgba(190, 139, 138, 0.5);
 }
 
 button:disabled {
@@ -107,20 +108,20 @@ button:disabled {
 .btn {
 	background: #FFF;
 	color: #EEACA4;
-	margin: .25em;
+	margin: 0.25em;
 	padding: 12px 24px;
 }
 
 .btn:hover {
-	background: rgba(255, 255, 255, .5);
+	background: rgba(255, 255, 255, 0.5);
 }
 
 .btn-secondary {
-	background: rgba(255, 255, 255, .5)
+	background: rgba(255, 255, 255, 0.5)
 }
 
 .btn-secondary:hover {
-	background: rgba(255, 255, 255, .25);
+	background: rgba(255, 255, 255, 0.25);
 }
 
 a {
@@ -128,11 +129,11 @@ a {
 }
 
 .max-full {
-	max-width: 1200px;
 	margin: 0 auto;
+	max-width: 1200px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 450px) {
 	h1 {
 		font-size: 100px;
 	}
@@ -140,20 +141,34 @@ a {
 	form {
 		padding: 25px 25px 35px;
 	}
+
+	#banner .banner-content {
+		justify-content: center;
+	}
+
+	#banner .banner-buttons {
+		padding: 0.5em 0 0;
+		text-align: center;
+		width: 100%;
+	}
+
+	#banner .btn {
+		font-size: 16px;
+	}
 }
 
 .loading button {
+	animation: loading 1s linear infinite;
 	background-image: linear-gradient(
 		to left top,
-		rgba(255, 255, 255, .2) 25%,
+		rgba(255, 255, 255, 0.2) 25%,
 		transparent 25%,
 		transparent 50%,
-		rgba(255, 255, 255, .2) 50%,
-		rgba(255, 255, 255, .2) 75%,
+		rgba(255, 255, 255, 0.2) 50%,
+		rgba(255, 255, 255, 0.2) 75%,
 		transparent 75%,
 		transparent);
 	background-size: 80px 80px;
-	animation: loading 1s linear infinite;
 }
 
 @keyframes loading {
