@@ -41,16 +41,17 @@ form {
 	border-radius: 5px;
 	margin: 0 auto;
 	max-width: 800px;
-	padding: 2em;
+	padding: 50px 50px 70px;
 	text-align: left;
 }
 
 h1 {
 	color: #FFF;
-	font-size: 100px;
-	font-weight: bold;
-	margin:.25em;
+	font-size: 120px;
+	font-weight: 900;
+	margin: 20px;
 	text-align: center;
+	text-shadow: 0 2px 14px #EFD6D4;
 }
 
 label {
@@ -75,6 +76,11 @@ input, textarea {
 	width: 100%;
 }
 
+label {
+	color: #BE8B8A;
+	font-weight: 18px;
+}
+
 button, .btn {
 	background: #BE8B8A;
 	border: 0;
@@ -83,12 +89,12 @@ button, .btn {
 	cursor: pointer;
 	display: inline-block;
 	font-family: 'Source Sans Pro';
-	font-size: 15px;
+	font-size: 17px;
 	font-weight: 600;
 	line-height: 1.5em;
 	outline: none;
 	margin: 15px 0 0;
-	padding: .5em 1.25em;
+	padding: 22px 34px;
 }
 
 button:hover {
@@ -99,6 +105,7 @@ button:hover {
 	background: #FFF;
 	color: #EEACA4;
 	margin: .25em;
+	padding: 16px 24px;
 }
 
 .btn:hover {
@@ -120,4 +127,10 @@ a {
 .max-full {
 	max-width: 1200px;
 	margin: 0 auto;
+}
+
+@media screen and (max-width: 600px) {
+	h1 {
+		font-size: 100px;
+	}
 }
