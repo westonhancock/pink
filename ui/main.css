@@ -32,6 +32,7 @@ body {
 
 .fa-heart {
 	color: #E7ADAB;
+	font-size: 1.25em;
 	opacity: .35;
 }
 
@@ -51,10 +52,13 @@ h1 {
 	font-weight: 900;
 	margin: 20px;
 	text-align: center;
-	text-shadow: 0 2px 14px #EFD6D4;
+	text-shadow: 0 2px 14px rgba(239, 214, 212, .5);
 }
 
 label {
+	color: #BE8B8A;
+	font-size: 18px;
+	font-weight: bold;
 	display: block;
 	margin: 0 0 5px;
 	text-align: left;
@@ -74,11 +78,6 @@ input, textarea {
 	padding: .5em 1em;
 	margin: 0 0 1em;
 	width: 100%;
-}
-
-label {
-	color: #BE8B8A;
-	font-weight: 18px;
 }
 
 button, .btn {
@@ -133,4 +132,27 @@ a {
 	h1 {
 		font-size: 100px;
 	}
+
+	form {
+		padding: 25px 25px 35px;
+	}
+}
+
+.loading button {
+	background-image: linear-gradient(
+		to left top,
+		rgba(255, 255, 255, .2) 25%,
+		transparent 25%,
+		transparent 50%,
+		rgba(255, 255, 255, .2) 50%,
+		rgba(255, 255, 255, .2) 75%,
+		transparent 75%,
+		transparent);
+	background-size: 80px 80px;
+	animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+	0% { background-position: 0 0; }
+	100% { background-position: 80px 0; }
 }
