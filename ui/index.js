@@ -8,8 +8,8 @@ form.addEventListener('submit', function(e) {
 	WeDeploy
 		.data('db-pink.wedeploy.io')
 		.create('notes', {
-			'name': form.name.value,
-			'message': form.message.value
+			'name': escape(form.name.value),
+			'message': escape(form.message.value)
 		})
 		.then(function(response) {
 			form.innerHTML = '<h2>Thank you for your message</h2>';
@@ -19,7 +19,7 @@ form.addEventListener('submit', function(e) {
 		.catch(function(error) {
 			var span = document.createElement("span");
 			span.classList.add('error-message');
-			span.append('Sorry, there has been an error. Please refresh the page and try again.')
+			span.append('Sorry, there has been an error. Please refresh the page and try again.');
 			form.append(span);
 			form.classList.remove('loading');
 			form.classList.add('error');

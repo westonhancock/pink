@@ -15,7 +15,7 @@ body {
 	background: #F0E7E6;
 	box-sizing: border-box;
 	left: 0;
-	padding: .5em;
+	padding: 16px .5em;
 	width: 100%;
 }
 
@@ -32,7 +32,7 @@ body {
 
 .fa-heart {
 	color: #E7ADAB;
-	font-size: 1.25em;
+	font-size: 1.5em;
 	opacity: .35;
 }
 
@@ -89,11 +89,11 @@ button, .btn {
 	display: inline-block;
 	font-family: 'Source Sans Pro';
 	font-size: 17px;
-	font-weight: 600;
+	font-weight: 400;
 	line-height: 1.5em;
 	outline: none;
 	margin: 15px 0 0;
-	padding: 22px 34px;
+	padding: 18px 34px;
 }
 
 button:hover {
@@ -104,7 +104,7 @@ button:hover {
 	background: #FFF;
 	color: #EEACA4;
 	margin: .25em;
-	padding: 16px 24px;
+	padding: 12px 24px;
 }
 
 .btn:hover {
