@@ -13,8 +13,8 @@ body {
 	flex-flow: column;
 	height: 100vh;
 	justify-content: space-between;
-	max-height: 900px;
-	min-height: 700px;
+	max-height: 1000px;
+	min-height: 600px;
 	padding: 3em 1em 1em;
 	text-align: center;
 }
@@ -50,6 +50,43 @@ body {
 	width: 36px;
 }
 
+.card-content .author {
+	color: #BE8B8A;
+	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+	font-size: 0.75em;
+	font-weight: 300;
+}
+
+.card-content {
+	box-sizing: border-box;
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+	justify-content: space-around;
+	padding: 1em;
+	position: absolute;
+	top: 0;
+	transition: all 0.5s ease;
+	width: 100%;
+}
+
+.card-content .fa-heart-o {
+	color: #E7ADAB;
+	font-size: 1.3em;
+}
+
+.card-content .message {
+	display: -webkit-box;
+	font-weight: 700;
+	line-height: 1.5;
+	max-height: 3em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
 .fa-long-arrow-down {
 	color: #EFD6D4;
 	font-size: 1.3em;
@@ -63,6 +100,90 @@ body {
 	margin: auto;
 	max-width: 1200px;
 	padding: 5.5em 0;
+}
+
+.grid .note-card {
+	align-items: center;
+	border-radius: 5px;
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
+	box-sizing: border-box;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	padding-bottom: 90%;
+	position: relative;
+	text-align: center;
+}
+
+.modal-active .overlay, .password-active .overlay {
+	display: block;
+}
+
+.modal-active .pop-up {
+	display: block;
+	height: auto;
+	max-width: 90%;
+	width: 1015px;
+	z-index: 2;
+}
+
+.overlay {
+	background: #F4ECEB;
+	display: none;
+	height: 100%;
+	opacity: 0.95;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+.password-active .password-container {
+	left: 50%;
+	position: fixed;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2
+}
+
+.pop-up {
+	transform: translate(-50%, -50%);
+	left: 50%;
+	display: none;
+	height: 200px;
+	position: fixed;
+	top: 50%;
+	width: 200px;
+	z-index: -1;
+}
+
+.pop-up .author {
+	font-size: 1em;
+}
+
+.pop-up .card-content {
+	background: #FFF;
+	border-radius: 5px;
+	box-shadow: 0 0 4px 0 #EDCCCB;
+	padding: 4em 9em 5.5em;
+	position: relative;
+	text-align: center;
+}
+
+.pop-up .controls {
+	padding: 2em 0;
+}
+
+.pop-up .fa-heart {
+	color: #E7ADAB;
+}
+
+.pop-up .message {
+	font-weight: 600;
+	max-height: auto;
+	padding: 4em 0 3em;
+
+	-webkit-line-clamp: none;
 }
 
 @media screen and (max-width: 1000px) {
@@ -83,87 +204,4 @@ body {
 		padding: 1em;
 		max-width: 400px;
 	}
-}
-
-.grid .note-card {
-	align-items: center;
-	border-radius: 5px;
-	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
-	box-sizing: border-box;
-	display: flex;
-	flex-flow: column;
-	justify-content: center;
-	padding-bottom: 90%;
-	position: relative;
-	text-align: center;
-}
-
-.grid .note-card .author {
-	color: #BE8B8A;
-	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
-	font-size: 0.75em;
-	font-weight: 100;
-}
-
-.grid .note-card .card-content {
-	box-sizing: border-box;
-	display: flex;
-	flex-flow: column;
-	height: 100%;
-	justify-content: space-around;
-	padding: 1em;
-	position: absolute;
-	top: 0;
-	transition: all 0.5s ease;
-	width: 100%;
-}
-
-.grid .note-card.focused .card-content {
-	background: #fff;
-	transform: scale3d(2, 2, 2);
-	width: 150%;
-	z-index: 2;
-}
-
-.grid .note-card .fa-heart-o {
-	color: #E7ADAB;
-	font-size: 1.3em;
-}
-
-.grid .note-card .phantom {
-	position: fixed;
-}
-
-.grid .note-card .phantom {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-}
-
-.grid .note-card .message {
-	display: -webkit-box;
-	font-weight: 600;
-	line-height: 1.5;
-	max-height: 3em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
-}
-
-.overlay {
-	background: #F4ECEB;
-	display: none;
-	height: 100%;
-	opacity: 0.95;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 1;
-}
-
-.carousel .overlay {
-	display: block;
 }
