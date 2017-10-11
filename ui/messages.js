@@ -2,18 +2,38 @@ var grid = $('.grid');
 var wrapper = $('#wrapper');
 var popUp = $('.pop-up');
 
-WeDeploy
-	// .data('db-pink.wedeploy.io')
-	.data('db-pinkdev.wedeploy.io')
-	.orderBy('id', 'desc')
-	.limit(50)
-	.get('notes')
-	.then(function(response) {
-		appendNotes(response);
-	})
-	.catch(function(error) {
-		console.error(error);
-	});
+var errorContainer = document.querySelector('.error-container');
+var passwordCotainer = document.querySelector('.password-container');
+
+function checkPassword(event) {
+	errorContainer.style.visibility = 'hidden';
+
+	if (event.target.value == 'password') {
+		passwordCotainer.parentNode.removeChild(passwordCotainer);
+
+		getData();
+	}
+	else if (event.keyCode == 13) {
+		event.preventDefault();
+
+		errorContainer.style.visibility = 'visible';
+	}
+}
+
+function getData() {
+	WeDeploy
+		// .data('db-pink.wedeploy.io')
+		.data('db-pinkdev.wedeploy.io')
+		.orderBy('id', 'desc')
+		.limit(50)
+		.get('notes')
+		.then(function(response) {
+			appendNotes(response);
+		})
+		.catch(function(error) {
+			console.error(error);
+		});
+}
 
 function appendNotes(notes) {
 	notes.forEach(

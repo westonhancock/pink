@@ -44,6 +44,12 @@
 		</div>
 
 		<div class="pop-up"></div>
+
+		<form class="password-container" onkeypress="checkPassword(event)">
+			<label>Please enter the password to proceed</label>
+			<input autofocus type="password" name="password" oninput="checkPassword(event)">
+			<span class="error-container" style="visibility: hidden;">Sorry, that password is incorrect. Please try again.</span>
+		</form>
 	</div>
 
 	<script src="https://cdn.wedeploy.com/api/2.3.1/wedeploy.js"></script>
