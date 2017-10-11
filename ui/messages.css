@@ -1,0 +1,169 @@
+body {
+	background: #F4ECEB;
+}
+
+#wrapper {
+	background-color: #FFF;
+}
+
+.banner {
+	background: #F4ECEB;
+	box-sizing: border-box;
+	display: flex;
+	flex-flow: column;
+	height: 100vh;
+	justify-content: space-between;
+	max-height: 900px;
+	min-height: 700px;
+	padding: 3em 1em 1em;
+	text-align: center;
+}
+
+.banner .banner-content {
+	flex-flow: column;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.banner-content h1 {
+	margin: 0;
+}
+
+.banner-content h2 {
+	font-family: 'Spectral', 'Open Sans', sans-serif;
+	font-size: 47px;
+	font-style: italic;
+	font-weight: normal;
+	letter-spacing: -2px;
+	margin: 0.2em 0;
+}
+
+.banner-content h3 {
+	font-family: "Open Sans";
+	font-weight: 100;
+	margin: 0.2em 0;
+}
+
+.banner-content .spacer{
+	border-bottom: 1px solid #E7ADAB;
+	width: 36px;
+}
+
+.fa-long-arrow-down {
+	color: #EFD6D4;
+	font-size: 1.3em;
+}
+
+.grid {
+	background-color: #FFF;
+	display: grid;
+	grid-gap: 24px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	margin: auto;
+	max-width: 1200px;
+	padding: 5.5em 0;
+}
+
+@media screen and (max-width: 1000px) {
+	.grid {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.grid {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.grid {
+		grid-template-columns: 1fr;
+		padding: 1em;
+		max-width: 400px;
+	}
+}
+
+.grid .note-card {
+	align-items: center;
+	border-radius: 5px;
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
+	box-sizing: border-box;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	padding-bottom: 90%;
+	position: relative;
+	text-align: center;
+}
+
+.grid .note-card .author {
+	color: #BE8B8A;
+	font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+	font-size: 0.75em;
+	font-weight: 100;
+}
+
+.grid .note-card .card-content {
+	box-sizing: border-box;
+	display: flex;
+	flex-flow: column;
+	height: 100%;
+	justify-content: space-around;
+	padding: 1em;
+	position: absolute;
+	top: 0;
+	transition: all 0.5s ease;
+	width: 100%;
+}
+
+.grid .note-card.focused .card-content {
+	background: #fff;
+	transform: scale3d(2, 2, 2);
+	width: 150%;
+	z-index: 2;
+}
+
+.grid .note-card .fa-heart-o {
+	color: #E7ADAB;
+	font-size: 1.3em;
+}
+
+.grid .note-card .phantom {
+	position: fixed;
+}
+
+.grid .note-card .phantom {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+}
+
+.grid .note-card .message {
+	display: -webkit-box;
+	font-weight: 600;
+	line-height: 1.5;
+	max-height: 3em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+.overlay {
+	background: #F4ECEB;
+	display: none;
+	height: 100%;
+	opacity: 0.95;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+.carousel .overlay {
+	display: block;
+}
