@@ -12,11 +12,11 @@
 	<link href="messages.css" rel="stylesheet">
 	<link href="favicon.ico" rel="icon" type="img/ico">
 </head>
-<body onload="checkCookie()">
-	<div class="password-active" id="wrapper">
+<body class="password-active" onload="checkCookie()">
+	<div id="wrapper">
 		<form class="password-container" onkeypress="checkPassword(event)" style="visibility: hidden;">
 			<label>Please enter the password to proceed</label>
-			<input autofocus type="password" name="password" oninput="checkPassword(event)">
+			<input autofocus type="password" name="password" oninput="checkPswd(event)">
 			<span class="error-container" style="visibility: hidden;">Sorry, that password is incorrect. Please try again.</span>
 		</form>
 
@@ -28,7 +28,7 @@
 
 				<div class="spacer"></div>
 
-				<h2>But as for me, God will redeem my life. He will snatch me from the power of the grave.</h2>
+				<h2>But God will redeem my soul from the power of the grave: for he shall receive me.</h2>
 
 				<h3>Psalm 49:15</h3>
 			</div>

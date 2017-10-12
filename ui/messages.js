@@ -2,29 +2,41 @@ var errorContainer = $('.error-container');
 var grid = $('.grid');
 var passwordCotainer = $('.password-container');
 var popUp = $('.pop-up .pop-up-content');
-var wrapper = $('#wrapper');
+var body = $('body');
 
 var notesLength = 0;
 
 function appendNotes(notes) {
+	var openedMessages = getOpenedMessages();
+
 	notes.forEach(
 		function(note, index) {
-			grid.append(`<div class="note-card note-${index}" data-index="${index}" tabindex="0">` +
-				`<div class="card-content">` +
-					`<i class="fa fa-heart-o" aria-hidden="true"></i>` +
-					`<div class="message">${unescape(note.message)}</div>` +
-					`<div class="author">${unescape(note.name)}</div>` +
-				`</div>` +
-			`</div>`);
+			var heartClass = 'fa-heart-o';
+
+			messageLength = unescape(note.message).split(' ').length;
+
+			if (openedMessages.includes(note.id)) {
+				heartClass = 'fa-heart';
+			}
+
+			grid.append(
+				`<div class="note-card note-${index}" data-entry-id="${note.id}" data-index="${index}" data-message-length="${messageLength}" tabindex="0">` +
+					`<div class="card-content">` +
+						`<i class="fa ${heartClass}" aria-hidden="true"></i>` +
+						`<div class="message">${unescape(note.message)}</div>` +
+						`<div class="author">${unescape(note.name)}</div>` +
+					`</div>` +
+				`</div>`
+			);
 		}
 	);
 }
 
 function checkCookie() {
-	var approved = getCookie('approved');
+	var _pswd = getCookie('_pswd');
 
-	if (approved != '') {
-		hidePswrdContainer();
+	if (_pswd == atob('cDFuaw==')) {
+		hidePswdContainer();
 
 		getData();
 	}
@@ -33,13 +45,13 @@ function checkCookie() {
 	}
 }
 
-function checkPassword(event) {
+function checkPswd(event) {
 	errorContainer.css('visibility', 'hidden');
 
-	if (event.target.value == 'p1nk') {
-		hidePswrdContainer();
+	if (btoa(event.target.value) == atob('Y0RGdWF3PT0=')) {
+		hidePswdContainer();
 
-		setCookie('approved', 'true', 30);
+		setCookie('_pswd', atob('cDFuaw=='), 30);
 
 		getData();
 	}
@@ -55,7 +67,7 @@ function closePopUp() {
 
 	if (focused) {
 		focused.removeClass('focused');
-		wrapper.removeClass('modal-active');
+		body.removeClass('modal-active');
 	}
 }
 
@@ -71,6 +83,30 @@ function cyclePopUp(incDec) {
 	popUp.html(newNote.html());
 
 	newNote.addClass('focused');
+
+	timeoutLength = (newNote.data('messageLength') / 10) * 1000;
+
+	setTimeout(
+		function() {
+			if (newNote.hasClass('focused')) {
+				setOpenedMessages(newNote.data('entryId'));
+
+				fillHeart(newNote);
+				fillHeart(popUp);
+			}
+		},
+		timeoutLength
+	);
+
+}
+
+function fillHeart(note) {
+	var noteHeart = note.find('.fa-heart-o');
+
+	if (noteHeart) {
+		noteHeart.removeClass('fa-heart-o');
+		noteHeart.addClass('fa-heart');
+	}
 }
 
 function getCurrentNote() {
@@ -86,10 +122,9 @@ function getCurrentNote() {
 
 function getData() {
 	WeDeploy
-		// .data('db-pink.wedeploy.io')
-		.data('db-pinkdev.wedeploy.io')
+		.data('db-pink.wedeploy.io')
+		// .data('db-pinkdev.wedeploy.io')
 		.orderBy('id', 'desc')
-		.limit(50)
 		.get('notes')
 		.then(function(response) {
 			appendNotes(response);
@@ -107,6 +142,7 @@ function getCookie(cname) {
 
 	for(var i = 0; i < ca.length; i++) {
 		var c = ca[i];
+
 		while (c.charAt(0) == ' ') {
 			c = c.substring(1);
 		}
@@ -127,6 +163,12 @@ function getNextNote() {
 	return nextNote;
 }
 
+function getOpenedMessages() {
+	var opened = getCookie('OPENED');
+
+	return opened.split(',');
+}
+
 function getPrevNote() {
 	var currentNote = getCurrentNote();
 
@@ -137,25 +179,89 @@ function getPrevNote() {
 	return currentNote - 1;
 }
 
-function hidePswrdContainer() {
+function handleControls(event) {
+	event.stopImmediatePropagation();
+
+	var curTarget = $(this);
+
+	if (curTarget.hasClass('next')) {
+		cyclePopUp(true);
+	}
+	else if (curTarget.hasClass('prev')) {
+		cyclePopUp(false);
+	}
+}
+
+function handleKeypress(event) {
+	var keyCode = event.keyCode;
+
+	if (keyCode == 39) {
+		cyclePopUp(true);
+	}
+	else if (keyCode == 37) {
+		cyclePopUp(false);
+	}
+	else if (keyCode == 27) {
+		closePopUp();
+	}
+	else if (keyCode == 13) {
+		var activeCard = $(event.currentTarget.activeElement);
+
+		if (activeCard.hasClass('.note-card')) {
+			openPopUp(activeCard);
+		}
+	}
+}
+
+function hidePswdContainer() {
 	passwordCotainer.remove();
-	wrapper.removeClass('password-active');
+	body.removeClass('password-active');
 }
 
 function openPopUp(target) {
-	wrapper.addClass('modal-active');
+	body.addClass('modal-active');
 	target.addClass('focused');
 
 	var popupContent = target.html();
 
 	popUp.html(popupContent);
+
+	timeoutLength = (target.data('messageLength') / 7) * 1000
+
+	setTimeout(
+		function() {
+			if (target.hasClass('focused')) {
+				setOpenedMessages(target.data('entryId'));
+
+				fillHeart(target);
+				fillHeart(popUp);
+			}
+		},
+		timeoutLength
+	);
 }
 
 function setCookie(cname,cvalue,exdays) {
 	var d = new Date();
+
 	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+
 	var expires = "expires=" + d.toGMTString();
+
 	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function setOpenedMessages(newOpened) {
+	var opened = getCookie('OPENED');
+
+	if (!opened) {
+		opened = newOpened;
+	}
+	else {
+		opened += ',' + newOpened;
+	}
+
+	setCookie('OPENED', opened, 1000);
 }
 
 function scrollContent() {
@@ -166,7 +272,11 @@ function scrollContent() {
 	)
 }
 
-$('.scroll-down').on('click', scrollContent);
+$(document).on('keydown', handleKeypress);
+
+$('.controls').on( 'click', '.cycle', handleControls);
+
+$('.close').on('click', closePopUp);
 
 grid.on(
 	'click',
@@ -176,51 +286,17 @@ grid.on(
 	}
 );
 
-$('.controls').on(
-	'click',
-	'.cycle',
-	function(event) {
-		event.stopImmediatePropagation();
+$('.pop-up, .overlay').on('click', closePopUp);
 
-		var curTarget = $(this);
-
-		if (curTarget.hasClass('next')) {
-			cyclePopUp(true);
-		}
-		else if (curTarget.hasClass('prev')) {
-			cyclePopUp(false);
-		}
-	}
-);
-
-$('.close').on('click', closePopUp);
-
-$('.overlay').on('click', closePopUp)
-
-$('.pop-up').on(
+$('.controls, .pop-up-content').on(
 	'click',
 	function(event) {
 		event.stopImmediatePropagation();
 	}
 );
 
+$('.scroll-down').on('click', scrollContent);
 
-$(document).on(
-	'keydown',
-	function (event) {
-		var keyCode = event.keyCode;
-
-		if (keyCode == 39) {
-			cyclePopUp(true);
-		}
-		else if (keyCode == 37) {
-			cyclePopUp(false);
-		}
-		else if (keyCode == 27) {
-			closePopUp();
-		}
-		else if (keyCode == 13) {
-			openPopUp($(event.currentTarget.activeElement));
-		}
-	}
-);
+if (navigator.userAgent.search("Firefox") > 0) {
+	body.addClass('firefox');
+}

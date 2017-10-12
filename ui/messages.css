@@ -2,6 +2,10 @@ body {
 	background: #F4ECEB;
 }
 
+body.modal-active {
+	overflow: hidden;
+}
+
 #wrapper {
 	background-color: #FFF;
 }
@@ -20,9 +24,9 @@ body {
 }
 
 .banner .banner-content {
-	flex-flow: column;
-	display: flex;
 	align-items: center;
+	display: flex;
+	flex-flow: column;
 	justify-content: space-around;
 }
 
@@ -64,6 +68,7 @@ body {
 	flex-flow: column;
 	height: 100%;
 	justify-content: space-around;
+	left: 0;
 	padding: 1em;
 	position: absolute;
 	top: 0;
@@ -108,20 +113,22 @@ body {
 	border-radius: 5px;
 	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.14);
 	box-sizing: border-box;
+	cursor: default;
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
 	padding-bottom: 90%;
 	position: relative;
 	text-align: center;
-	border: 1px solid transparent;
-	cursor: pointer;
-	transition: transform 0.2s;
+	transition: box-shadow 0.2s, transform 0.2s;
+
+	height: 18vw;
+	max-height: 254px;
 }
 
 .grid .note-card:focus, .grid .note-card:hover {
 	box-shadow: 0 0 22px 0 rgba(0, 0, 0, 0.09);
-	border-color: #E7ADAB;
+	outline-color: #E7ADAB;
 	transform: translateY(-2px);
 }
 
@@ -130,10 +137,9 @@ body {
 }
 
 .modal-active .pop-up {
+	box-sizing: border-box;
 	display: block;
 	height: auto;
-	max-width: 90%;
-	width: 1015px;
 	z-index: 2;
 }
 
@@ -157,13 +163,18 @@ body {
 }
 
 .pop-up {
-	transform: translate(-50%, 0);
-	left: 50%;
 	display: none;
+	height: 100%;
 	height: 200px;
+	left: 50%;
+	max-height: 100vh;
+	overflow: auto;
+	padding: 1em;
+	padding-top: 5%;
 	position: fixed;
-	top: 20%;
-	width: 200px;
+	top: 0;
+	transform: translate(-50%, 0);
+	width: 100%;
 	z-index: -1;
 }
 
@@ -181,19 +192,19 @@ body {
 }
 
 .pop-up .controls {
-	padding: 2em 0;
+	align-items: center;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	padding: 2em 0;
 }
 
 .pop-up .controls .fa {
-	transition: transform 0.1s;
-	margin: 0 2em;
-	cursor: pointer;
 	color: #E7ADAB;
-	opacity: 0.5;
+	cursor: pointer;
 	font-size: 24px;
+	margin: 0 2em;
+	opacity: 0.5;
+	transition: transform 0.1s;
 }
 
 .pop-up .controls .fa:hover {
@@ -203,23 +214,53 @@ body {
 .pop-up .controls .close {
 	align-items: center;
 	cursor: pointer;
-	display: flex;
+	font-size: 14px;
 	font-style: italic;
 	font-weight: 200;
-	font-size: 14px;
 	opacity: 0.85;
+}
+
+.pop-up .controls .close:after {
+	background: #E7ADAB;
+	content: '';
+	display: block;
+	height: 1px;
+	margin: 0.1em 0;
+	opacity: 0;
+
+	-webkit-transform: scaleX(0);
+	-moz-transform: scaleX(0);
+	-ms-transform: scaleX(0);
+	-o-transform: scaleX(0);
+	transform: scaleX(0);
+
+	-webkit-transition: all 0.3s cubic-bezier(0.4, -0.4, 0.4, 1.4);
+	-moz-transition: all 0.3s cubic-bezier(0.4, -0.4, 0.4, 1.4);
+	-o-transition: all 0.3s cubic-bezier(0.4, -0.4, 0.4, 1.4);
+	transition: all 0.3s cubic-bezier(0.4, -0.4, 0.4, 1.4);
+}
+
+.pop-up .controls .close:hover:after {
+	opacity: 0.5;
+
+	-webkit-transform: scaleX(1);
+	-moz-transform: scaleX(1);
+	-ms-transform: scaleX(1);
+	-o-transform: scaleX(1);
+	transform: scaleX(1);
 }
 
 .pop-up .controls .spacer {
 	background: #E7ADAB;
 	height: 1px;
-	width: 28px;
-	opacity: 0.34;
 	margin: 0 0.5em;
+	opacity: 0.34;
+	width: 28px;
 }
 
 .pop-up .fa-heart {
 	color: #E7ADAB;
+	font-size: 1.3em;
 }
 
 .pop-up .message {
@@ -230,9 +271,36 @@ body {
 	-webkit-line-clamp: unset;
 }
 
+.pop-up .pop-up-content {
+	margin: auto;
+	max-width: 1015px;
+}
+
+.firefox .grid .note-card {
+	height: 18vw;
+	max-height: 254px;
+}
+
+.firefox .card-content .message {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.firefox .pop-up .message {
+	overflow: visible;
+	white-space: normal;
+}
+
 @media screen and (max-width: 1000px) {
 	.grid {
 		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.firefox .grid .note-card {
+		height: 27vw;
+		max-height: 270px;
 	}
 }
 
@@ -240,12 +308,66 @@ body {
 	.grid {
 		grid-template-columns: 1fr 1fr;
 	}
+
+	.firefox .grid .note-card {
+		height: 40vw;
+		max-height: 326px;
+	}
+
+	.pop-up {
+		max-height: 95vh;
+		padding-top: 1em;
+		top: 5%;
+	}
+
+	.pop-up .author {
+		font-size: 17px;
+	}
+
+	.pop-up .card-content {
+		padding: 3em 4em;
+	}
+
+	.pop-up .message {
+		font-size: 16px;
+	}
 }
 
 @media screen and (max-width: 500px) {
 	.grid {
 		grid-template-columns: 1fr;
 		padding: 1em;
-		max-width: 400px;
+	}
+
+	.firefox .grid .note-card {
+		height: 72vw;
+		max-height: 360px;
+	}
+
+	.pop-up {
+		max-height: 100%;
+		padding-top: 1em;
+		top: 0;
+	}
+
+	.pop-up .author {
+		font-size: 15px;
+	}
+
+	.pop-up .card-content {
+		padding: 2em;
+	}
+
+	.pop-up .message {
+		font-size: 15px;
+		padding: 2em 0;
+	}
+
+	.pop-up .controls .fa.next {
+		margin: 0 0 0 auto;
+	}
+
+	.pop-up .controls .fa.prev {
+		margin: 0 auto 0 0;
 	}
 }
