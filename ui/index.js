@@ -8,7 +8,6 @@ function submitForm(e) {
 
 	WeDeploy
 		.data('db-pink.wedeploy.io')
-		// .data('db-pinkdev.wedeploy.io')
 		.create(
 			'notes',
 			{

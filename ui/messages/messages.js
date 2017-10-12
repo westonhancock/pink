@@ -123,7 +123,6 @@ function getCurrentNote() {
 function getData() {
 	WeDeploy
 		.data('db-pink.wedeploy.io')
-		// .data('db-pinkdev.wedeploy.io')
 		.orderBy('id', 'desc')
 		.get('notes')
 		.then(function(response) {
@@ -207,7 +206,7 @@ function handleKeypress(event) {
 	else if (keyCode == 13) {
 		var activeCard = $(event.currentTarget.activeElement);
 
-		if (activeCard.hasClass('.note-card')) {
+		if (activeCard.hasClass('note-card')) {
 			openPopUp(activeCard);
 		}
 	}
@@ -237,7 +236,7 @@ function openPopUp(target) {
 				fillHeart(popUp);
 			}
 		},
-		timeoutLength
+		300 + timeoutLength
 	);
 }
 
@@ -299,4 +298,8 @@ $('.scroll-down').on('click', scrollContent);
 
 if (navigator.userAgent.search("Firefox") > 0) {
 	body.addClass('firefox');
+}
+
+if (navigator.userAgent.search("Safari") > 0) {
+	body.addClass('safari');
 }
