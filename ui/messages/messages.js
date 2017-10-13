@@ -26,7 +26,7 @@ function appendNotes(notes) {
 					'<div class="card-content">' +
 						'<i class="fa ' + heartClass + '" aria-hidden="true"></i>' +
 						'<div class="message">' + unescape(note.message) + '</div>' +
-						'<div class="author">' + unescape(note.name) + '</div>' +
+						'<div class="author">' + unescape(note.name).replace(' and ', ' & ') + '</div>' +
 					'</div>' +
 				'</div>'
 			);
