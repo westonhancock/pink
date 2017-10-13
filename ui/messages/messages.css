@@ -297,6 +297,25 @@ body.modal-active {
 	-webkit-font-smoothing: antialiased;
 }
 
+.safari.version-10 .grid, .edge .grid, .ie .grid, .opera.version-15 .grid {
+	display: flex;
+	flex-wrap: wrap;
+
+}
+
+.safari.version-10 .grid .note-card, .edge .grid .note-card, .ie .grid .note-card, .opera.version-15 .grid .note-card {
+	width: 21vw;
+	max-width: 275px;
+	margin: 12px;
+	padding-bottom: 21%;
+}
+
+@media screen and (min-width: 1300px) {
+	.safari.version-10 .grid .note-card, .edge .grid .note-card, .ie .grid .note-card, .opera.version-15 .grid .note-card {
+		width: 275px;
+	}
+}
+
 @media screen and (max-width: 1000px) {
 	.grid {
 		grid-template-columns: 1fr 1fr 1fr;
@@ -305,6 +324,12 @@ body.modal-active {
 	.firefox .grid .note-card {
 		height: 27vw;
 		max-height: 270px;
+	}
+
+	.safari.version-10 .grid .note-card, .edge .grid .note-card, .ie .grid .note-card, .opera.version-15 .grid .note-card {
+		max-width: 292px;
+		width: 28vw;
+		padding-bottom: 28%;
 	}
 }
 
@@ -316,6 +341,12 @@ body.modal-active {
 	.firefox .grid .note-card {
 		height: 40vw;
 		max-height: 326px;
+	}
+
+	.safari.version-10 .grid .note-card, .edge .grid .note-card, .ie .grid .note-card, .opera.version-15 .grid .note-card {
+		max-width: 331px;
+		width: 41.5vw;
+		padding-bottom: 41%;
 	}
 
 	.pop-up {
@@ -336,6 +367,15 @@ body.modal-active {
 		font-size: 16px;
 	}
 }
+
+@media screen and (max-width: 600px) {
+	.safari.version-10 .grid .note-card, .edge .grid .note-card, .ie .grid .note-card, .opera.version-15 .grid .note-card {
+		max-width: 100%;
+		padding-bottom: 83%;
+		width: 100%;
+	}
+}
+
 
 @media screen and (max-width: 500px) {
 	.grid {

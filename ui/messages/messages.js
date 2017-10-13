@@ -20,13 +20,13 @@ function appendNotes(notes) {
 			}
 
 			grid.append(
-				`<div class="note-card note-${index}" data-entry-id="${note.id}" data-index="${index}" data-message-length="${messageLength}" tabindex="0">` +
-					`<div class="card-content">` +
-						`<i class="fa ${heartClass}" aria-hidden="true"></i>` +
-						`<div class="message">${unescape(note.message)}</div>` +
-						`<div class="author">${unescape(note.name)}</div>` +
-					`</div>` +
-				`</div>`
+				'<div class="note-card note-' + index + '" data-entry-id="' + note.id + '" data-index="' + index + '" data-message-length="' + messageLength + '" tabindex="0">' +
+					'<div class="card-content">' +
+						'<i class="fa ' + heartClass + '" aria-hidden="true"></i>' +
+						'<div class="message">' + unescape(note.message) + '</div>' +
+						'<div class="author">' + unescape(note.name) + '</div>' +
+					'</div>' +
+				'</div>'
 			);
 		}
 	);
@@ -107,6 +107,34 @@ function fillHeart(note) {
 		noteHeart.removeClass('fa-heart-o');
 		noteHeart.addClass('fa-heart');
 	}
+}
+
+function getBrowser() {
+	var userAgent = navigator.userAgent;
+	var temp = [];
+	var info = userAgent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+
+	if (/trident/i.test(info[1])) {
+		temp = /\brv[ :]+(\d+)/g.exec(userAgent) || [];
+
+		return {name: 'IE', version: (temp[1]||'')};
+	}
+
+	if (info[1] === 'Chrome') {
+		temp = userAgent.match(/\bOPR|Edge\/(\d+)/);
+
+		if (temp != null) {
+			return {name: 'Opera', version: temp[1]};
+		}
+	}
+
+	info = info[2] ? [info[1], info[2]] : [navigator.appName, navigator.appVersion, '-?'];
+
+	if ((temp = userAgent.match(/version\/(\d+)/i)) != null) {
+		info.splice(1, 1, temp[1]);
+	}
+
+	return {name: info[0], version: info[1]};
 }
 
 function getCurrentNote() {
@@ -296,10 +324,7 @@ $('.controls, .pop-up-content').on(
 
 $('.scroll-down').on('click', scrollContent);
 
-if (navigator.userAgent.search("Firefox") > 0) {
-	body.addClass('firefox');
-}
+var browser = getBrowser()
 
-if (navigator.userAgent.search("Safari") > 0) {
-	body.addClass('safari');
-}
+body.addClass(browser.name.toLowerCase());
+body.addClass('version-' + browser.version.replace('.', '-'));
