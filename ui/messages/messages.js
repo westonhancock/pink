@@ -6,6 +6,8 @@ var body = $('body');
 
 var notesLength = 0;
 
+var readTime = {};
+
 function appendNotes(notes) {
 	var openedMessages = getOpenedMessages();
 
@@ -86,7 +88,9 @@ function cyclePopUp(incDec) {
 
 	timeoutLength = (newNote.data('messageLength') / 10) * 1000;
 
-	setTimeout(
+	clearTimeout(readTime);
+
+	readTime = setTimeout(
 		function() {
 			if (newNote.hasClass('focused')) {
 				setOpenedMessages(newNote.data('entryId'));
@@ -255,7 +259,7 @@ function openPopUp(target) {
 
 	timeoutLength = (target.data('messageLength') / 7) * 1000
 
-	setTimeout(
+	readTime = setTimeout(
 		function() {
 			if (target.hasClass('focused')) {
 				setOpenedMessages(target.data('entryId'));
